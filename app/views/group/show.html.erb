@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<p></p>
+<a href='/product'>Dashboard</a>
+<table>
+	<thead>
+		<tr>
+			<th>Created By</th>
+			<th>Description</th>
+			<th>Members</th>
+			<th>Action</th>
+
+			
+		</tr>
+	</thead>
+	<tbody>
+		
+		<tr>
+			<td><%= @groups.created %></td>
+			<td><%= @groups.description %></td>
+			<td><%=  %></td>
+			<td><form action="members" method="post">
+                    <input id="post" type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                    <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                    <input type="hidden" name="group_id" value="<%= @groups.id %>">
+                    <% if current_user.first_name == @groups.created  %>
+ <a href="/group/<%= @groups.id %>" data-method="delete">Delete</a>
+ 
+ <% end %>
+
+
+                    <button>Join</button> 
+                </form>
+			</td>
+		</tr>
+		
+	</tbody>
+</table>
+
+
+</body>
+</html>

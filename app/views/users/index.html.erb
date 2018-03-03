@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<p></p><h1><%= current_user.first_name %></h1>
+<p></p>
+<a href='/users'>All Groups</a><p></p>
+<form action="/product" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<label>Group Name</label>
+	<input type="text" name="group[name]"/>
+
+	<label>Description</label>
+	<input type="text" name="group[description]"/>
+
+	<button type="submit">Create</button>
+
+
+</form>
+
+
+
+<h1>Listing Groups</h1>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Members</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<% @group.each do |d| %>
+		<tr>
+			<td><a href='/group/<%= d.id %>'><%= d.name %></a></td>
+			<td><%= d.description %></td>
+			<td><%= d.member.count %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+
+
+</body>
+</html>
